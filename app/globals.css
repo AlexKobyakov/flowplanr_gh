@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Кастомные стили для приложения */
+@layer components {
+  /* Анимации для форм */
+  .form-input {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .form-input:focus {
+    @apply scale-[1.02] shadow-lg;
+  }
+
+  /* Градиентный текст */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  /* Карточки с glassmorphism эффектом */
+  .glass-card {
+    @apply bg-white/95 backdrop-blur-lg border border-white/20 shadow-2xl;
+  }
+
+  /* Кнопки с hover эффектами */
+  .btn-hover {
+    @apply transition-all duration-200 hover:scale-105 hover:shadow-lg;
+  }
+
+  /* Анимация появления для элементов */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  /* Скроллбар для textarea */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full hover:bg-gray-400;
+  }
+}
+
+@layer utilities {
+  /* Утилиты для текста */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Утилиты для анимаций */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  /* Кастомные размеры */
+  .h-screen-safe {
+    height: 100dvh; /* Учитывает мобильные браузеры */
+  }
+
+  .min-h-screen-safe {
+    min-height: 100dvh;
+  }
+}
+
+/* Анимации для автосохранения */
+.save-indicator {
+  transition: all 0.3s ease-in-out;
+}
+
+.save-indicator.saving {
+  @apply text-blue-600;
+}
+
+.save-indicator.saved {
+  @apply text-green-600;
+  animation: pulse 0.5s ease-in-out;
+}
+
+.save-indicator.error {
+  @apply text-red-600;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Стили для улучшенного UX */
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+/* Responsive утилиты */
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .text-responsive {
+    @apply text-sm md:text-base;
+  }
+}
+
+/* Высокий контраст для доступности */
+@media (prefers-contrast: high) {
+  .glass-card {
+    @apply bg-white border-gray-300;
+  }
+}
+
+/* Уменьшенная анимация для пользователей с ограниченными возможностями */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
